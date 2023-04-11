@@ -31,6 +31,16 @@ try{
 })
 
 
+boardRouter.get("/task", async(req,res)=>{
+    const ID= req.body;
+try{
+    const task= TaskModel.find({boardID:ID});
+    res.send({"msg":"Task get","task":task})
+}catch(err){
+    res.send({"msg":"somthing went wrong","error":err.message})
+}
+})
+
 boardRouter.post("/task/:id", async(req,res)=>{
     const payload= req.body;
     const ID= req.params.id;
