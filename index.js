@@ -4,6 +4,7 @@ require('dotenv').config();
 const {auth} = require("./middleware/auth.middleware");
 const {connecion}= require("./config/db")
 const { userRouter } = require("./routes/User.route");
+const {boardRouter} = require("./routes/Board.route")
 
 
 
@@ -11,10 +12,11 @@ const { userRouter } = require("./routes/User.route");
 
 
 const app= express();
-app.use(express.json());
-// app.use("/user",auth);
 app.use(cors());
+app.use(express.json());
 app.use("/user",userRouter);
+app.use("/board",auth);
+app.use("/board",boardRouter);
 
 
 
